@@ -1,0 +1,2 @@
+ffmpeg -y -i "The.mkv" -i "Monitor021.png" -filter_complex "[0:v]scale=857:540 [v1]; movie=wedding.mp4:loop=999,setpts=N/(FRAME_RATE*TB) [v2]; [v2][v1]overlay=shortest=1:x=385:y=78 [v3]; [v3][1:v]overlay=0:0,setdar=16/9; [0:a]volume=3" -vcodec libx264 -pix_fmt yuv420p -r 30 -g 60 -b:v 1000k -minrate 1000k -maxrate 1000k -profile:v main -level 3.1 -acodec libmp3lame -b:a 128k -ar 44100 -preset fast "output.mp4"
+cmd
